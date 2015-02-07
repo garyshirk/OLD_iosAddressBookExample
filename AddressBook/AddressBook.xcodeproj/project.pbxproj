@@ -15,6 +15,7 @@
 		4ECF7DD21A869DE20010A5B1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ECF7DD11A869DE20010A5B1 /* Images.xcassets */; };
 		4ECF7DD51A869DE20010A5B1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ECF7DD31A869DE20010A5B1 /* LaunchScreen.xib */; };
 		4ECF7DE11A869DE20010A5B1 /* AddressBookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF7DE01A869DE20010A5B1 /* AddressBookTests.swift */; };
+		4ECF7DEB1A86A1D90010A5B1 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF7DEA1A86A1D90010A5B1 /* Contact.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		4ECF7DDA1A869DE20010A5B1 /* AddressBookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AddressBookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ECF7DDF1A869DE20010A5B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4ECF7DE01A869DE20010A5B1 /* AddressBookTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBookTests.swift; sourceTree = "<group>"; };
+		4ECF7DEA1A86A1D90010A5B1 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 				4ECF7DD11A869DE20010A5B1 /* Images.xcassets */,
 				4ECF7DD31A869DE20010A5B1 /* LaunchScreen.xib */,
 				4ECF7DC71A869DE20010A5B1 /* AddressBook.xcdatamodeld */,
+				4ECF7DEA1A86A1D90010A5B1 /* Contact.swift */,
 				4ECF7DC31A869DE20010A5B1 /* Supporting Files */,
 			);
 			path = AddressBook;
@@ -220,6 +223,7 @@
 			files = (
 				4ECF7DC61A869DE20010A5B1 /* AppDelegate.swift in Sources */,
 				4ECF7DC91A869DE20010A5B1 /* AddressBook.xcdatamodeld in Sources */,
+				4ECF7DEB1A86A1D90010A5B1 /* Contact.swift in Sources */,
 				4ECF7DCB1A869DE20010A5B1 /* MasterViewController.swift in Sources */,
 				4ECF7DCD1A869DE20010A5B1 /* DetailViewController.swift in Sources */,
 			);
