@@ -1,17 +1,17 @@
 //
 //  DetailViewController.swift
 //  AddressBook
-//
-//  Created by Gary Shirk on 2/7/15.
-//  Copyright (c) 2015 garyshirk. All rights reserved.
-//
 
 import UIKit
 
 class DetailViewController: UIViewController {
 
-    @IBOutlet weak var detailDescriptionLabel: UILabel!
-
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var phoneTextField: UITextField!
+    @IBOutlet weak var streetTextField: UITextField!
+    @IBOutlet weak var cityTextField: UITextField!
+    @IBOutlet weak var stateTextField: UITextField!
+    @IBOutlet weak var zipTextField: UITextField!
 
     var detailItem: AnyObject? {
         didSet {
@@ -22,11 +22,11 @@ class DetailViewController: UIViewController {
 
     func configureView() {
         // Update the user interface for the detail item.
-        if let detail: AnyObject = self.detailItem {
-            if let label = self.detailDescriptionLabel {
-                label.text = detail.valueForKey("timeStamp")!.description
-            }
-        }
+//        if let detail: AnyObject = self.detailItem {
+//            if let label = self.detailDescriptionLabel {
+//                label.text = detail.valueForKey("timeStamp")!.description
+//            }
+//        }
     }
 
     override func viewDidLoad() {

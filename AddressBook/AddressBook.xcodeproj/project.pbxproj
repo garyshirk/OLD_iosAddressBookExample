@@ -16,6 +16,7 @@
 		4ECF7DD51A869DE20010A5B1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ECF7DD31A869DE20010A5B1 /* LaunchScreen.xib */; };
 		4ECF7DE11A869DE20010A5B1 /* AddressBookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF7DE01A869DE20010A5B1 /* AddressBookTests.swift */; };
 		4ECF7DEB1A86A1D90010A5B1 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF7DEA1A86A1D90010A5B1 /* Contact.swift */; };
+		4EDA3C961A86B1B2002EFA9F /* AddEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDA3C951A86B1B2002EFA9F /* AddEditTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		4ECF7DDF1A869DE20010A5B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4ECF7DE01A869DE20010A5B1 /* AddressBookTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBookTests.swift; sourceTree = "<group>"; };
 		4ECF7DEA1A86A1D90010A5B1 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		4EDA3C951A86B1B2002EFA9F /* AddEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				4ECF7DC71A869DE20010A5B1 /* AddressBook.xcdatamodeld */,
 				4ECF7DEA1A86A1D90010A5B1 /* Contact.swift */,
 				4ECF7DC31A869DE20010A5B1 /* Supporting Files */,
+				4EDA3C951A86B1B2002EFA9F /* AddEditTableViewController.swift */,
 			);
 			path = AddressBook;
 			sourceTree = "<group>";
@@ -221,6 +224,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EDA3C961A86B1B2002EFA9F /* AddEditTableViewController.swift in Sources */,
 				4ECF7DC61A869DE20010A5B1 /* AppDelegate.swift in Sources */,
 				4ECF7DC91A869DE20010A5B1 /* AddressBook.xcdatamodeld in Sources */,
 				4ECF7DEB1A86A1D90010A5B1 /* Contact.swift in Sources */,
@@ -419,6 +423,7 @@
 				4ECF7DE61A869DE20010A5B1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4ECF7DE71A869DE20010A5B1 /* Build configuration list for PBXNativeTarget "AddressBookTests" */ = {
 			isa = XCConfigurationList;
@@ -427,6 +432,7 @@
 				4ECF7DE91A869DE20010A5B1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

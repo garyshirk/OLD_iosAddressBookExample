@@ -2,9 +2,6 @@
 //  AppDelegate.swift
 //  AddressBook
 //
-//  Created by Gary Shirk on 2/7/15.
-//  Copyright (c) 2015 garyshirk. All rights reserved.
-//
 
 import UIKit
 import CoreData
