@@ -137,7 +137,7 @@
                     <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="v8c-4l-Fej">
                             <connections>
-                                <segue destination="tAU-Y4-BMm" kind="showDetail" identifier="showEditDetails" id="9kW-Hb-t2i"/>
+                                <segue destination="tAU-Y4-BMm" kind="show" identifier="showEditContact" id="9kW-Hb-t2i"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -152,7 +152,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1465" y="62"/>
+            <point key="canvasLocation" x="1511" y="140"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="Nki-YV-4Qg">
@@ -161,7 +161,7 @@
                     <toolbarItems/>
                     <connections>
                         <segue destination="RMx-3f-FxP" kind="relationship" relationship="masterViewController" id="BlO-5A-QYV"/>
-                        <segue destination="vC3-pB-5Vb" kind="relationship" relationship="detailViewController" id="Tll-UG-LXB"/>
+                        <segue destination="Zsu-ea-SvH" kind="relationship" relationship="detailViewController" id="IFg-vJ-P6M"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cZU-Oi-B1e" sceneMemberID="firstResponder"/>
@@ -212,12 +212,15 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="Zsu-ea-SvH" kind="showDetail" identifier="showInstructions" id="OWa-aI-uJW"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="709" y="-630"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Add Edit Table View Controller-->
         <scene sceneID="K2d-80-Npv">
             <objects>
                 <tableViewController id="mwE-Fd-OnP" customClass="AddEditTableViewController" customModule="AddressBook" customModuleProvider="target" sceneMemberID="viewController">
@@ -388,7 +391,7 @@
                             <outlet property="delegate" destination="mwE-Fd-OnP" id="ofp-rc-WeL"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="ABZ-ux-DND">
+                    <navigationItem key="navigationItem" id="ABZ-ux-DND">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="G1U-d3-IDC"/>
                     </navigationItem>
                     <connections>
@@ -404,7 +407,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fOG-3h-BeT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2260" y="-639"/>
+            <point key="canvasLocation" x="2266" y="-630"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="mFV-QU-cd9">
@@ -421,6 +424,53 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GvB-1q-2Pl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1511" y="-630"/>
+        </scene>
+        <!--Instructions View Controller-->
+        <scene sceneID="dNs-b3-aPO">
+            <objects>
+                <viewController id="hJq-Lu-D7S" customClass="InstructionsViewController" customModule="AddressBook" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="As3-00-hT2"/>
+                        <viewControllerLayoutGuide type="bottom" id="I2C-wF-xGB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="f0L-3D-Ayt">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Touch a contact to display its details" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhO-PZ-ROX">
+                                <rect key="frame" x="160" y="131" width="280" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="vhO-PZ-ROX" secondAttribute="centerX" id="IMF-st-QDg"/>
+                            <constraint firstAttribute="centerY" secondItem="vhO-PZ-ROX" secondAttribute="centerY" constant="158.5" id="fug-J6-cwp"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="epp-2c-ep8"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I2A-8K-7tu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-29" y="837"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="8ZX-fM-MRc">
+            <objects>
+                <navigationController id="Zsu-ea-SvH" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pBY-dv-6cz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="hJq-Lu-D7S" kind="relationship" relationship="rootViewController" id="YFz-ij-XEb"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lA1-LI-gAF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-29" y="98"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="r7l-gg-dq7">
@@ -439,7 +489,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Tll-UG-LXB"/>
+        <segue reference="OWa-aI-uJW"/>
         <segue reference="9kW-Hb-t2i"/>
     </inferredMetricsTieBreakers>
 </document>

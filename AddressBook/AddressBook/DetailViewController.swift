@@ -2,7 +2,13 @@
 //  DetailViewController.swift
 //  AddressBook
 
+import CoreData
 import UIKit
+
+// MasterViewController conforms to be notified when contact edited
+protocol DetailViewControllerDelegate {
+    func didEditContact(controller: DetailViewController)
+}
 
 class DetailViewController: UIViewController {
 

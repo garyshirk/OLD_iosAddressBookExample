@@ -5,7 +5,10 @@
 import UIKit
 import CoreData
 
-class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+class MasterViewController: UITableViewController,
+                                NSFetchedResultsControllerDelegate,
+                                AddEditTableViewControllerDelegate,
+                                DetailViewControllerDelegate {
 
     var detailViewController: DetailViewController? = nil
     var managedObjectContext: NSManagedObjectContext? = nil
@@ -36,6 +39,17 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // called by AddEditViewController after a contact is added
+    func didSaveContact(controller: AddEditTableViewController) {
+        
+    }
+    
+    // called by DetailViewController after a contact is edited
+    func didEditContact(controller: DetailViewController) {
+    
+    }
+    
 
     func insertNewObject(sender: AnyObject) {
         let context = self.fetchedResultsController.managedObjectContext

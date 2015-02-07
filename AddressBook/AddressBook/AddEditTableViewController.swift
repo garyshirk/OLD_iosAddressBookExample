@@ -2,7 +2,14 @@
 //  AddEditTableViewController.swift
 //  AddressBook
 
+import CoreData
 import UIKit
+
+// MasterViewController and DetailViewController conform to this
+// to be notified when a contact is added or edited, respectively
+protocol AddEditTableViewControllerDelegate {
+    func didSaveContact(controller: AddEditTableViewController)
+}
 
 class AddEditTableViewController: UITableViewController {
     
