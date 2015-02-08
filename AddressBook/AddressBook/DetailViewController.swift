@@ -18,13 +18,16 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var cityTextField: UITextField!
     @IBOutlet weak var stateTextField: UITextField!
     @IBOutlet weak var zipTextField: UITextField!
+    
+    var delegate: DetailViewControllerDelegate!
+    var detailItem: Contact!
 
-    var detailItem: AnyObject? {
-        didSet {
-            // Update the view.
-            self.configureView()
-        }
-    }
+//    var detailItem: AnyObject? {
+//        didSet {
+//            // Update the view.
+//            self.configureView()
+//        }
+//    }
 
     func configureView() {
         // Update the user interface for the detail item.

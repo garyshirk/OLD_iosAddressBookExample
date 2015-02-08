@@ -14,6 +14,10 @@ protocol AddEditTableViewControllerDelegate {
 class AddEditTableViewController: UITableViewController {
     
     @IBOutlet var inputFields: [UITextField]!
+    
+    var delegate: AddEditTableViewControllerDelegate?
+    var contact: Contact? // Contact to add or edit
+    var editingContact = false // differentiates adding/editing
 
     override func viewDidLoad() {
         super.viewDidLoad()
