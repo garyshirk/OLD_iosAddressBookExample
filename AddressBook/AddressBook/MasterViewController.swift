@@ -63,17 +63,6 @@ class MasterViewController: UITableViewController,
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    // called by AddEditViewController after a contact is added
-    func didSaveContact(controller: AddEditTableViewController) {
-        
-    }
-    
-    // called by DetailViewController after a contact is edited
-    func didEditContact(controller: DetailViewController) {
-    
-    }
-    
 
     func insertNewObject(sender: AnyObject) {
         let context = self.fetchedResultsController.managedObjectContext
@@ -121,6 +110,44 @@ class MasterViewController: UITableViewController,
             controller.contact = newContact
         }
     }
+    
+    // called by AddEditViewController after a contact is added
+    func didSaveContact(controller: AddEditTableViewController) {
+        // context and insert newly added contact
+        let context = self.fetchedResultsController.managedObjectContext
+        context.insertObject(controller.contact!)
+        self.navigationController?.popToRootViewControllerAnimated(true)
+        
+        // save context to store the new contact
+        var error: NSError? = nil
+        if !context.save(&error) {
+            displayError(error, title: "Error saving data", message: "Unable to save contact")
+        } // if no error, display new contact details
+        let sectionInfo = self.fetchedResultsController.sections![0] as NSFetchedResultsSectionInfo
+        if let row = find(sectionInfo.objects as [NSManagedObject], controller.contact!) {
+            let path = NSIndexPath(forRow: row, inSection: 0)
+            tableView.selectRowAtIndexPath(path, animated: true, scrollPosition: .Middle)
+            performSegueWithIdentifier("showContactDetail", sender: nil)
+        }
+    }
+    
+    // called by DetailViewController after a contact is edited
+    func didEditContact(controller: DetailViewController) {
+        let context = self.fetchedResultsController.managedObjectContext
+        var error: NSError? = nil
+        if !context.save(&error) {
+            displayError(error, title: "Error saving data", message: "Unable to save contact")
+        }
+    }
+    
+    func displayError(error: NSError?, title: String, message: String) {
+        // create alert controller and display error
+        let alertController = UIAlertController(title: title, message: String(format: "%@\nError:\(error)\n", message), preferredStyle: UIAlertControllerStyle.Alert)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil)
+        alertController.addAction(okAction)
+        presentViewController(alertController, animated: true, completion: nil)
+    }
+    
 
     // MARK: - Table View
 
@@ -147,21 +174,20 @@ class MasterViewController: UITableViewController,
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             let context = self.fetchedResultsController.managedObjectContext
-            context.deleteObject(self.fetchedResultsController.objectAtIndexPath(indexPath) as NSManagedObject)
+            context.deleteObject(self.fetchedResultsController.objectAtIndexPath(indexPath) as Contact)
                 
             var error: NSError? = nil
             if !context.save(&error) {
-                // Replace this implementation with code to handle the error appropriately.
-                // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                //println("Unresolved error \(error), \(error.userInfo)")
+                displayError(error, title: "Unable to load data", message: "Address unable to access database")
                 abort()
             }
         }
     }
 
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
-        let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as NSManagedObject
-        cell.textLabel!.text = object.valueForKey("timeStamp")!.description
+        let contact = self.fetchedResultsController.objectAtIndexPath(indexPath) as Contact
+        cell.textLabel!.text = contact.lastname
+        cell.detailTextLabel!.text = contact.firstname
     }
 
     // MARK: - Fetched results controller

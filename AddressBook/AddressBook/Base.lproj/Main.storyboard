@@ -489,7 +489,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="OWa-aI-uJW"/>
         <segue reference="Fk4-UA-Rtb"/>
+        <segue reference="OWa-aI-uJW"/>
     </inferredMetricsTieBreakers>
 </document>
