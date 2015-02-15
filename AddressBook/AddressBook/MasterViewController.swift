@@ -199,17 +199,16 @@ class MasterViewController: UITableViewController,
         
         let fetchRequest = NSFetchRequest()
         // Edit the entity name as appropriate.
-        let entity = NSEntityDescription.entityForName("Event", inManagedObjectContext: self.managedObjectContext!)
+        let entity = NSEntityDescription.entityForName("Contact", inManagedObjectContext: self.managedObjectContext!)
         fetchRequest.entity = entity
         
         // Set the batch size to a suitable number.
         fetchRequest.fetchBatchSize = 20
         
-        // Edit the sort key as appropriate.
-        let sortDescriptor = NSSortDescriptor(key: "timeStamp", ascending: false)
-        let sortDescriptors = [sortDescriptor]
-        
-        fetchRequest.sortDescriptors = [sortDescriptor]
+        // sort by last name then first name ascending
+        let lastNameSortDescriptor = NSSortDescriptor(key: "lastname", ascending: true, selector: "caseInsensitiveCompare:")
+        let firstNameSortDescriptor = NSSortDescriptor(key: "firstname", ascending: true, selector: "caseInsensitiveCompare:")
+        fetchRequest.sortDescriptors = [lastNameSortDescriptor, firstNameSortDescriptor]
         
         // Edit the section name key path and cache name if appropriate.
         // nil for section name key path means "no sections".
@@ -219,10 +218,7 @@ class MasterViewController: UITableViewController,
         
     	var error: NSError? = nil
     	if !_fetchedResultsController!.performFetch(&error) {
-    	     // Replace this implementation with code to handle the error appropriately.
-    	     // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-             //println("Unresolved error \(error), \(error.userInfo)")
-    	     abort()
+            displayError(error, title: "Error fetching data", message: "Unable to get data from data source")
     	}
         
         return _fetchedResultsController!

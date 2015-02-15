@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E25E9D91A9146FF00497797 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF7DEA1A86A1D90010A5B1 /* Contact.swift */; };
 		4ECF7DC61A869DE20010A5B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF7DC51A869DE20010A5B1 /* AppDelegate.swift */; };
 		4ECF7DC91A869DE20010A5B1 /* AddressBook.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF7DC71A869DE20010A5B1 /* AddressBook.xcdatamodeld */; };
 		4ECF7DCB1A869DE20010A5B1 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF7DCA1A869DE20010A5B1 /* MasterViewController.swift */; };
@@ -15,7 +16,6 @@
 		4ECF7DD21A869DE20010A5B1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ECF7DD11A869DE20010A5B1 /* Images.xcassets */; };
 		4ECF7DD51A869DE20010A5B1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ECF7DD31A869DE20010A5B1 /* LaunchScreen.xib */; };
 		4ECF7DE11A869DE20010A5B1 /* AddressBookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF7DE01A869DE20010A5B1 /* AddressBookTests.swift */; };
-		4ECF7DEB1A86A1D90010A5B1 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECF7DEA1A86A1D90010A5B1 /* Contact.swift */; };
 		4EDA3C961A86B1B2002EFA9F /* AddEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDA3C951A86B1B2002EFA9F /* AddEditTableViewController.swift */; };
 		4EDA3C981A86C4A6002EFA9F /* InstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDA3C971A86C4A6002EFA9F /* InstructionsViewController.swift */; };
 /* End PBXBuildFile section */
@@ -227,10 +227,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E25E9D91A9146FF00497797 /* Contact.swift in Sources */,
 				4EDA3C961A86B1B2002EFA9F /* AddEditTableViewController.swift in Sources */,
 				4ECF7DC61A869DE20010A5B1 /* AppDelegate.swift in Sources */,
 				4ECF7DC91A869DE20010A5B1 /* AddressBook.xcdatamodeld in Sources */,
-				4ECF7DEB1A86A1D90010A5B1 /* Contact.swift in Sources */,
 				4ECF7DCB1A869DE20010A5B1 /* MasterViewController.swift in Sources */,
 				4EDA3C981A86C4A6002EFA9F /* InstructionsViewController.swift in Sources */,
 				4ECF7DCD1A869DE20010A5B1 /* DetailViewController.swift in Sources */,

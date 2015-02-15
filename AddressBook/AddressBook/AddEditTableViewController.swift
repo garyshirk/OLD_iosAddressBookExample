@@ -11,9 +11,13 @@ protocol AddEditTableViewControllerDelegate {
     func didSaveContact(controller: AddEditTableViewController)
 }
 
-class AddEditTableViewController: UITableViewController {
+class AddEditTableViewController: UITableViewController,
+            UITextFieldDelegate {
     
     @IBOutlet var inputFields: [UITextField]!
+    
+    // field names used in loops to get/set Contact attribute values via NSManagedObject methods value for key
+    private let fieldNames = ["firstname", "lastname", "email", "phone", "street", "city", "state", "zip"]
     
     var delegate: AddEditTableViewControllerDelegate?
     var contact: Contact? // Contact to add or edit
@@ -21,35 +25,103 @@ class AddEditTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    
+        for textField in inputFields {
+            textField.delegate = self
+        }
+        
+        // if editing a contact, display its data
+        if editingContact {
+            for i in 0..<fieldNames.count {
+                // query contact objec with value for key
+                if let value: AnyObject = contact?.valueForKey(fieldNames[i]) {
+                    inputFields[i].text = value.description
+                }
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+        
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        let userInfo = notification.userInfo!
+        let frame = userInfo[UIKeyboardFrameEndUserInfoKey] as NSValue!
+        let size = frame.CGRectValue().size
+        
+        // get duration of keyboard's slide-in animation
+        let animationTime =
+        userInfo[UIKeyboardAnimationDurationUserInfoKey]!.doubleValue
+        
+        // scroll self.tableView so selected UITextField above keyboard
+        UIView.animateWithDuration(animationTime) {
+            var insets = self.tableView.contentInset
+            insets.bottom = size.height
+            self.tableView.contentInset = insets
+            self.tableView.scrollIndicatorInsets = insets
+        }
+        
+    }
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
-        return 0
+//    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+//        // #warning Potentially incomplete method implementation.
+//        // Return the number of sections.
+//        return 0
+//    }
+//
+//    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        // #warning Incomplete method implementation.
+//        // Return the number of rows in the section.
+//        return 0
+//    }
+    
+    // called when app receives UIKeyboardWillHideNotification
+    func keyboardWillHide(notification: NSNotification) {
+        var insets = self.tableView.contentInset
+        insets.bottom = 0
+        self.tableView.contentInset = insets
+        self.tableView.scrollIndicatorInsets = insets
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
-        return 0
+    // hide keyboard if user touches Return key
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
-
+    
     @IBAction func saveButtonPressed(sender: AnyObject) {
-        
+        if inputFields[0].text.isEmpty || inputFields[1].text.isEmpty {
+            let alertController = UIAlertController(title: "Error", message: "First and last names required", preferredStyle: UIAlertControllerStyle.Alert)
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil)
+            alertController.addAction(okAction)
+            presentViewController(alertController, animated: true, completion: nil)
+        } else {
+            // update contact in core data from input fields
+            for i in 0..<fieldNames.count {
+                let value = (!inputFields[i].text.isEmpty ? inputFields[i].text : nil)
+                self.contact?.setValue(value, forKey: fieldNames[i])
+            }
+            self.delegate?.didSaveContact(self)
+        }
     }
     
     /*

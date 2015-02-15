@@ -10,7 +10,8 @@ protocol DetailViewControllerDelegate {
     func didEditContact(controller: DetailViewController)
 }
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController,
+    AddEditTableViewControllerDelegate {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var phoneTextField: UITextField!
@@ -40,8 +41,11 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        self.configureView()
+        
+        if detailItem != nil {
+            displayContact()
+        }
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,6 +53,36 @@ class DetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    func displayContact() {
+        self.navigationItem.title = detailItem.firstname + " " + detailItem.lastname
+        
+        emailTextField.text = detailItem.email?
+        phoneTextField.text = detailItem.phone?
+        streetTextField.text = detailItem.street?
+        cityTextField.text = detailItem.city?
+        stateTextField.text = detailItem.state?
+        zipTextField.text = detailItem.zip?
+    }
+    
+    func didSaveContact(controller: AddEditTableViewController) {
+        displayContact()
+        self.navigationController?.popViewControllerAnimated(true)
+        delegate?.didEditContact(self)
+    }
+    
+    // call when user taps edit button
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        // configure vc to edit current contact
+        if segue.identifier == "showEditContact" {
+            let controller = (segue.destinationViewController as UINavigationController).topViewController as AddEditTableViewController
+            controller.navigationItem.title = "Edit Contact"
+            controller.delegate = self
+            controller.editingContact = true
+            controller.contact = detailItem
+            controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+            controller.navigationItem.leftItemsSupplementBackButton = true
+        }
+    }
 }
 
